@@ -1,4 +1,3 @@
-
 #!/usr/env python
 # -*- coding : utf-8 -*-
 #
@@ -22,23 +21,27 @@ import os, sys, subprocess
 from cv2 import *
 import image_to_text as itt
 
-
-# initialize the camera
+# Initialize the camera
 cam = VideoCapture(1)   # 1 -> index of camera
 s, img = cam.read()
 
 itt.func()
 
+# Initialize TTS engine
 engine = pyttsx.init()
+engine.setProperty('rate', 100)
+
+file1 = "out1.txt"
+file2 = "out2.txt"
 
 # Reading text file
-with open("out1.txt", "r+") as testFile:
+with open(file1, "r+") as testFile:
     for line in testFile.readlines():
         engine.say(line)
         engine.runAndWait()
 
 # Reading text file 2
-with open("out2.txt", "r+") as testFile2:
+with open(file2, "r+") as testFile2:
     for line in testFile2.readlines():
         engine.say(line)
         engine.runAndWait()
