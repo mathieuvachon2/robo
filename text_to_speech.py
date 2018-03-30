@@ -22,16 +22,17 @@ import os, sys, subprocess
 from cv2 import *
 import image_to_text as itt
 
-
-# initialize the camera
+# Initialize the camera
 cam = VideoCapture(1)   # 1 -> index of camera
 s, img = cam.read()
 
 itt.func()
 
+# Initialize TTS engine
 engine = pyttsx.init()
+engine.setProperty('rate', 100)
 
-# Reading text file
+# Read text file
 with open("test.txt", "r+") as testFile:
     for line in testFile.readlines():
         engine.say(line)
