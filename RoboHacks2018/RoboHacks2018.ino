@@ -3,13 +3,13 @@
 
 int const servoPin = 0;
 
-Servo servo1;
+Servo servo;
 
 // the setup function runs once when you press reset or power the board
 void setup() {
   // initialize digital pin LED_BUILTIN as an output.
   pinMode(LED_BUILTIN, OUTPUT);
-  servo1.attach(servoPin);
+  servo.attach(servoPin);
 }
 
 // the loop function runs over and over again forever
@@ -19,7 +19,7 @@ void loop() {
 }
 
 void spinny(int angle, size_t ms) {
-  servo1.write(angle);
+  servo.write(angle);
   delay(ms);
 }
 
