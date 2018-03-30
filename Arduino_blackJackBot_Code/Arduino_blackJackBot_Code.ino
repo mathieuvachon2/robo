@@ -1,4 +1,10 @@
 #include <Servo.h>
+#include "ServoUtil.cpp"
+
+int servoPin = 9;
+ServoUtil servo(servoPin);
+//servo.setPin(9);
+
 Servo servo0;
 Servo servo1;
 int sensorvalue0;
@@ -19,6 +25,16 @@ void setup()
   pinMode(A1, INPUT);
   pinMode(8, OUTPUT);
   servo1.attach(8);
+
+  servo0.write(0);
+  delay(200);
+  servo0.write(180);
+  delay(1000);
+//  servo.turn(0, 200);
+//  servo.goOrigin();
+//  servo.turnAround();
+//  servo.turn(180, 200);
+  return;
 
   if (count > 0) { //move hand down to surface to indicate hit
     servo0.write(105);                 // tell servo to go to position in variable 'pos'
@@ -75,4 +91,5 @@ void setup()
 
 void loop()
 {
+  
 }

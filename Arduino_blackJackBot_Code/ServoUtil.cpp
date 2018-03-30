@@ -1,5 +1,12 @@
+#ifndef SERVO_UTIL
+#define SERVO_UTIL
+
 #include <stdbool.h>
+#include <Arduino.h>
 #include <Servo.h>
+
+#define MINQUARTDELAY 50
+#define MINHALFDELAY 200
 
 class ServoUtil {
     Servo servo;
@@ -16,42 +23,37 @@ public:
 	}
 	
 	Servo getServo() { return servo; }
-    
-	void turnDelay(int deg, size_t ms) {
-		servo.write(deg);
-		delay(ms);
-    }
 	
 	void turn(int deg, int ms) {
-		turnDelay(deg, (size_t)ms);
+		servo.write(deg);
+		delay(ms);
+	}
+	
+	void goOrigin() {
+		turn(0, MINHALFDELAY);
 	}
 	
 	void turnQuarter() {
-		turnDelay(90, 15);
+		turn(90, MINQUARTDELAY);
+	}
+
+	void turnOpposite() {
+		turn(180, MINHALFDELAY);
+	}
+	
+	void turnAround() {
+		turnOpposite();
+		goOrigin();
 	}
 	
 	void sweep() {
 		for (int deg = 0; deg <= 180; ++deg) {
-			turnDelay(deg, 15);
+			turn(deg, MINQUARTDELAY);
 		}
 		for (int deg = 180; deg >= 0; --deg) {
-			turnDelay(deg, 15);
+			turn(deg, MINQUARTDELAY);
 		}
 	}
-	
-	void goOrigin() {
-		turn(0, 15);
-	}
-	
-	void turnLeft() {
-		turn(90, 15);
-	}
-	
-	void turnAround() {
-		turn(360, 15);
-	}
-	
-	void turnQuick(int deg) {
-		turn(deg, 0);
-	}
-}
+};
+
+#endif /* ServoUtil.cpp */
