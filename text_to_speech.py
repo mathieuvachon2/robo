@@ -14,8 +14,11 @@ try:
 except ImportError:
     import pyttsx
 from pytesseract import image_to_string
-from PIL import Image
-import os
+try:
+    import pillow
+except ImportError:
+    from PIL import Image
+import os, sys, subprocess
 from cv2 import *
 import image_to_text as itt
 
