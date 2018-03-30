@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 #!/usr/env python
 # -*- coding : utf-8 -*-
 #
@@ -32,8 +32,13 @@ itt.func()
 engine = pyttsx.init()
 
 # Reading text file
-with open("test.txt", "r+") as testFile:
+with open("out1.txt", "r+") as testFile:
     for line in testFile.readlines():
         engine.say(line)
+        engine.runAndWait()
 
-engine.runAndWait()
+# Reading text file 2
+with open("out2.txt", "r+") as testFile2:
+    for line in testFile2.readlines():
+        engine.say(line)
+        engine.runAndWait()
