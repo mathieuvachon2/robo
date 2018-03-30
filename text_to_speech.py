@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #!/usr/env python
 # -*- coding : utf-8 -*-
 #
@@ -12,10 +13,22 @@ try:
     import pyttsx3 as pyttsx
 except ImportError:
     import pyttsx
+from pytesseract import image_to_string
+from PIL import Image
+import os
+from cv2 import *
+import image_to_text as itt
+
+
+# initialize the camera
+cam = VideoCapture(1)   # 1 -> index of camera
+s, img = cam.read()
+
+itt.func()
 
 engine = pyttsx.init()
 
-# Opening text file
+# Reading text file
 with open("test.txt", "r+") as testFile:
     for line in testFile.readlines():
         engine.say(line)
