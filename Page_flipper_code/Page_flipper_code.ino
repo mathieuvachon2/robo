@@ -1,4 +1,41 @@
 #include <Servo.h>
+#include <stdbool.h>
+
+#define MINQUARTDELAY 50
+#define MINHALFDELAY 200
+
+Servo getServo() { return servo; }
+
+void turn(Servo servo, int deg, int ms) {
+  servo.write(deg);
+  delay(ms);
+}
+
+void goOrigin(Servo servo) {
+  turn(servo, 0, MINHALFDELAY);
+}
+
+void turnQuarter(Servo servo) {
+  turn(servo, 90, MINQUARTDELAY);
+}
+
+void turnOpposite(Servo servo) {
+  turn(servo, 180, MINHALFDELAY);
+}
+
+void turnAround(Servo servo) {
+  turnOpposite(servo);
+  goOrigin(servo);
+}
+
+void sweep(Servo servo) {
+  for (int deg = 0; deg <= 180; ++deg) {
+    turn(servo, deg, MINQUARTDELAY);
+  }
+  for (int deg = 180; deg >= 0; --deg) {
+    turn(servo, deg, MINQUARTDELAY);
+  }
+}
 
 Servo servo0;
 Servo servo1;
@@ -21,77 +58,22 @@ void setup()
   pinMode(8, OUTPUT);
   servo1.attach(8);
 
-for (int i = 0; i < 7; i++) { // do this cycle 7? times to ensure paper gets discharged
-  servo0.write(0);
-  delay(1000);
-  servo0.write(180); // servo on pin 9 connected to wheel rotates 180 degrees
-  delay(1000);
-  servo1.write(0); // servo on pin 8 connected to arm rotates 180 degrees to lift up
-  delay(1000);
-  servo1.write(180);
-  delay(1000);
-  servo0.write(0); // servo on pin 9 connected to wheel returns to start position
-  delay(1000);
-  servo1.write(0); // servo on pin 8 connected to arm returns to bottom start position
-  // repeat 7? times  
-}
+  for (int i = 0; i < 7; i++) { // do this cycle 7? times to ensure paper gets discharged
+    servo0.write(0);
+    delay(1000);
+    servo0.write(180); // servo on pin 9 connected to wheel rotates 180 degrees
+    delay(1000);
+    servo1.write(0); // servo on pin 8 connected to arm rotates 180 degrees to lift up
+    delay(1000);
+    servo1.write(180);
+    delay(1000);
+    servo0.write(0); // servo on pin 9 connected to wheel returns to start position
+    delay(1000);
+    servo1.write(0); // servo on pin 8 connected to arm returns to bottom start position
+    // repeat 7? times  
+  }
 
 }
-
- 
-//
-//  if (count1 > 0) { //move hand down to surface to indicate hit
-//    servo0.write(105);                 // tell servo to go to position in variable 'pos'
-//    delay(200);                      // waits 300ms for the servo to reach the position
-//    servo0.write(90);                 // tell servo to go to position in variable 'pos'
-//    delay(200);                      // waits 300ms for the servo to reach the position
-//    servo0.write(75);                 // tell servo to go to position in variable 'pos'
-//    delay(200);                      // waits 300ms for the servo to reach the position
-//    servo0.write(60);                 // tell servo to go to position in variable 'pos'
-//    delay(200);                      // waits 300ms for the servo to reach the position
-//    servo0.write(45);                 // tell servo to go to position in variable 'pos'
-//    delay(200);                      // waits 300ms for the servo to reach the position
-//    servo0.write(35);                 // tell servo to go to position in variable 'pos'
-//    delay(500);                      // waits 300ms for the servo to reach the position
-//    servo0.write(60);                 // tell servo to go to position in variable 'pos'
-//    delay(500);                      // waits 300ms for the servo to reach the position
-//    servo0.write(90);                 // tell servo to go to position in variable 'pos'
-//    delay(500);                      // waits 300ms for the servo to reach the position
-//  }
-//
-//  else { //leave hand alone and move arm side to side to indicate hold
-//    servo1.write(45);                 // tell servo to go to position in variable 'pos'
-//    delay(200);                      // waits 75ms for the servo to reach the position
-//    servo1.write(20);                 // tell servo to go to position in variable 'pos'
-//    delay(200);                      // waits 75ms for the servo to reach the position
-//    servo1.write(0);                 // tell servo to go to position in variable 'pos'
-//    delay(200);                      // waits 75ms for the servo to reach the position
-//    servo1.write(20);                 // tell servo to go to position in variable 'pos'
-//    delay(200);                      // waits 75ms for the servo to reach the position
-//    servo1.write(45);                 // tell servo to go to position in variable 'pos'
-//    delay(200);                      // waits 75ms for the servo to reach the position
-//    servo1.write(70);                 // tell servo to go to position in variable 'pos'
-//    delay(200);                      // waits 75ms for the servo to reach the position
-//    servo1.write(90);                 // tell servo to go to position in variable 'pos'
-//    delay(200);                      // waits 75ms for the servo to reach the position
-//    servo1.write(110);                 // tell servo to go to position in variable 'pos'
-//    delay(200);                      // waits 75ms for the servo to reach the position
-//    servo1.write(135);                 // tell servo to go to position in variable 'pos'
-//    delay(200);                      // waits 75ms for the servo to reach the position
-//    servo1.write(155);                 // tell servo to go to position in variable 'pos'
-//    delay(200);                      // waits 75ms for the servo to reach the position
-//    servo1.write(180);                 // tell servo to go to position in variable 'pos'
-//    delay(200);                      // waits 75ms for the servo to reach the position
-//    servo1.write(155);                 // tell servo to go to position in variable 'pos'
-//    delay(200);                      // waits 75ms for the servo to reach the position
-//    servo1.write(135);                 // tell servo to go to position in variable 'pos'
-//    delay(200);                      // waits 75ms for the servo to reach the position
-//    servo1.write(110);                 // tell servo to go to position in variable 'pos'
-//    delay(200);                      // waits 75ms for the servo to reach the position
-//    servo1.write(90);                 // tell servo to go to position in variable 'pos'
-//    delay(200);                      // waits 75ms for the servo to reach the position
-//  }
-//}
 
 void loop() // note that loop never ends, do not use for this project
 {
