@@ -20,6 +20,9 @@ except ImportError:
 import os, sys, subprocess
 from cv2 import *
 import image_to_text as itt
+import serial
+
+ser = serial.Serial()
 
 # Initialize the camera
 cam = VideoCapture(1)   # 1 -> index of camera
@@ -29,7 +32,9 @@ itt.func()
 
 # Initialize TTS engine
 engine = pyttsx.init()
-engine.setProperty('rate', 100)
+SPEED = engine.getProperty('rate') * 0.5
+engine.setProperty('rate', SPEED)
+# print(engine.getProperty('voice'))
 
 file1 = "out1.txt"
 file2 = "out2.txt"
@@ -41,7 +46,7 @@ with open(file1, "r+") as testFile:
         engine.runAndWait()
 
 # Reading text file 2
-with open(file2, "r+") as testFile2:
-    for line in testFile2.readlines():
+with open(file2, "r+") as testFile:
+    for line in testFile.readlines():
         engine.say(line)
         engine.runAndWait()
