@@ -3,7 +3,7 @@
 
 #define MINQUARTDELAY 50
 #define MINHALFDELAY 200
-int turn = 0;
+int i;
 
 void turnDelay(Servo servo, int deg, int ms) {
   servo.write(deg);
@@ -76,7 +76,7 @@ void loop() // note that loop never ends, do not use for this project
 //    Serial.println(turn);
 //  }
   int tmp = Serial.read();
-  for (int i = 0; i < 4; i++) { // do this cycle 7? times to ensure paper gets discharged
+  for (i = 0; i < 2; i++) { // do this cycle 7? times to ensure paper gets discharged
     /*servo0.write(0); // adjust degrees for proper alignment with page
     delay(15);
     servo0.write(180); // servo on pin 9 connected to wheel rotates 180 degrees
@@ -89,40 +89,40 @@ void loop() // note that loop never ends, do not use for this project
     delay(1000);
     servo1.write(0); // servo on pin 8 connected to arm returns to bottom start position
     // repeat 7? times  */
-    for(posArm=0;posArm <=20;posArm++){
-      servo1.write(posArm); // servo on pin 9 connected to wheel returns to start position
-      delay(15);
-    }
-    for(posWheel=0;posWheel <= 180;posWheel++){
-      servo0.write(posWheel); // servo on pin 9 connected to wheel returns to start position
-      delay(5);
-    }
-    for(posArm=20;posArm >= 0;posArm--){
-      servo1.write(posArm); // servo on pin 9 connected to wheel returns to start position
-      delay(15);
-    }
-    for(posWheel=180;posWheel >= 0;posWheel--){
-      servo0.write(posWheel); // servo on pin 9 connected to wheel returns to start position
-      delay(5);
-    }
-    for(posArm=0;posArm <=20;posArm++){
-      servo1.write(posArm); // servo on pin 9 connected to wheel returns to start position
-      delay(15);
-    }
-    for(posWheel=0;posWheel <= 180;posWheel++){
-      servo0.write(posWheel); // servo on pin 9 connected to wheel returns to start position
-      delay(5);
-    }
-    for(posArm=20;posArm >= 0;posArm--){
-      servo1.write(posArm); // servo on pin 9 connected to wheel returns to start position
-      delay(15);
-    }
-    for(posWheel=180;posWheel >= 0;posWheel--){
-      servo0.write(posWheel); // servo on pin 9 connected to wheel returns to start position
-      delay(5);
-    }
+      for(posArm=0;posArm <=20;posArm++){
+        servo1.write(posArm); // servo on pin 9 connected to wheel returns to start position
+        delay(15);
+      }
+      for(posWheel=0;posWheel <= 180;posWheel++){
+        servo0.write(posWheel); // servo on pin 9 connected to wheel returns to start position
+        delay(5);
+      }
+      for(posArm=20;posArm >= 0;posArm--){
+        servo1.write(posArm); // servo on pin 9 connected to wheel returns to start position
+        delay(15);
+      }
+      for(posWheel=180;posWheel >= 0;posWheel--){
+        servo0.write(posWheel); // servo on pin 9 connected to wheel returns to start position
+        delay(5);
+      }
+      for(posArm=0;posArm <=20;posArm++){
+        servo1.write(posArm); // servo on pin 9 connected to wheel returns to start position
+        delay(15);
+      }
+      for(posWheel=0;posWheel <= 180;posWheel++){
+        servo0.write(posWheel); // servo on pin 9 connected to wheel returns to start position
+        delay(5);
+      }
+      for(posArm=20;posArm >= 0;posArm--){
+        servo1.write(posArm); // servo on pin 9 connected to wheel returns to start position
+        delay(15);
+      }
+      for(posWheel=180;posWheel >= 0;posWheel--){
+        servo0.write(posWheel); // servo on pin 9 connected to wheel returns to start position
+        delay(5);
+      }
     // repeat 7? times
-  }
+    }
 //  turn = 0;
   }
 }

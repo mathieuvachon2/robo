@@ -50,4 +50,3 @@ def func():
             # os.system("tesseract "+image2jpg+" "+file2)
             subprocess.run(["tesseract", image2jpg, file2])
             cnt += 1
-func()
