@@ -4,6 +4,7 @@
 #define MINQUARTDELAY 50
 #define MINHALFDELAY 200
 int i;
+int turn;
 
 void turnDelay(Servo servo, int deg, int ms) {
   servo.write(deg);
@@ -123,6 +124,6 @@ void loop() // note that loop never ends, do not use for this project
       }
     // repeat 7? times
     }
-//  turn = 0;
+    turn = 0;
   }
 }
