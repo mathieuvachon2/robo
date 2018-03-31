@@ -12,17 +12,17 @@ try:
     import pyttsx3 as pyttsx
 except ImportError:
     import pyttsx
-from pytesseract import image_to_string
+#from pytesseract import image_to_string
 from PIL import Image
 import os, sys, subprocess
 from cv2 import *
 import image_to_text as itt
 import serial
-
-# ser = serial.Serial()
+#establishing connection with the arduino
+ser = serial.Serial('/dev/cu.usbmodem1461',9600)
 
 # Initialize the camera
-cam = VideoCapture(1)   # 1 -> index of camera
+cam = VideoCapture(0)   # 1 -> index of camera
 s, img = cam.read()
 # print(img)
 
@@ -49,3 +49,9 @@ with open(file2, "r+") as testFile:
     for line in testFile.readlines():
         engine.say(line)
     engine.runAndWait()
+
+#send 1 to arduino to start the flipping process
+serial.write('1')
+#executing the flipping in python
+for line in ser.readlines:
+    print(line)

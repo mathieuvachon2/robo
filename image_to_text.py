@@ -1,4 +1,4 @@
-from pytesseract import image_to_string
+#from pytesseract import image_to_string
 from PIL import Image
 import os, sys, subprocess
 import numpy as np
@@ -10,7 +10,7 @@ file2 = "out2"
 
 def func():
     # initialize the camera
-    cam = VideoCapture(1)   # 1 -> index of camera
+    cam = VideoCapture(0)   # 1 -> index of camera
     s, img = cam.read()
 
     if s:    # frame captured without any errors
@@ -49,3 +49,4 @@ def func():
             # os.system("tesseract "+image2jpg+" "+file2)
             subprocess.run(["tesseract", image2jpg, file2])
             cnt += 1
+func()
