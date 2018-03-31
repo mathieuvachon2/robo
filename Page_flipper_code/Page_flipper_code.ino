@@ -77,4 +77,5 @@ void setup()
 
 void loop() // note that loop never ends, do not use for this project
 {
+  return;
 }
