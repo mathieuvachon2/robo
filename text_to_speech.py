@@ -24,7 +24,7 @@ import serial
 ######## If you're using Mac, uncomment the first line. If you're using Windows, uncomment the second line
 #and dont forget to type the correct post #######
 #ser = serial.Serial('/dev/cu.usbmodem1461',9600)
-ser = serial.Serial('COM3', 9600)
+ser = serial.Serial('COM6', 9600)
 
 # Initialize the camera
 #redundant as itt initialize the camera already
@@ -33,7 +33,7 @@ ser = serial.Serial('COM3', 9600)
 # print(img)
 while(True):
     itt.func()
-    
+
     # Initialize TTS engine
     engine = pyttsx.init()
     MODIF = 1.0
@@ -66,4 +66,3 @@ while(True):
     #for line in ser.readlines():
      #   if (line == 'turn = 0\n'): break
       #  print(line)
-

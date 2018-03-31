@@ -11,7 +11,7 @@ file2 = "out2"
 
 def func():
     # initialize the camera
-    cam = VideoCapture(1)   # 1 -> index of camera
+    cam = VideoCapture(0)   # 1 -> index of camera
     s, img = cam.read()
 
     if s:    # frame captured without any errors
@@ -26,7 +26,7 @@ def func():
     h = np.size(img, 0)
     w = np.size(img, 1)
 
-    x = raw_input('Do you want to carry on? ("n" to exit): ')
+    x = input('Do you want to carry on? ("n" to exit): ')
     if (x == "n"):
         exit()
 
@@ -36,7 +36,7 @@ def func():
     os.system("tesseract " + image1jpg + " " + file1)
 
     # No cropping for now
-    """ 
+    """
     while(True):
 
         if (cnt == 2) : break # Both pages have been cropped
