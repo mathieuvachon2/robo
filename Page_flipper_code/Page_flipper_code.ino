@@ -5,12 +5,12 @@
 #define MINHALFDELAY 200
 int turn = 0;
 
-/*void turn(Servo servo, int deg, int ms) {
+void turnDelay(Servo servo, int deg, int ms) {
   servo.write(deg);
   delay(ms);
 }
 
-void goOrigin(Servo servo) {
+/*void goOrigin(Servo servo) {
   turn(servo, 0, MINHALFDELAY);
 }
 
