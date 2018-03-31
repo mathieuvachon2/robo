@@ -18,8 +18,11 @@ engine.setProperty('rate', SPEED)
 # print(engine.getProperty('voice'))
 
 # engine.say("2 + 2 is 4. Minus 1 that's 3 QUICK MATHS.")
-engine.say('Did you ever hear the tragedy of Darth Plagueis The Wise? I thought not. It’s not a story the Jedi would tell you.')
+# engine.say('Did you ever hear the tragedy of Darth Plagueis The Wise? I thought not. It’s not a story the Jedi would tell you.')
 # engine.say(pasta);
 # engine.say('You... are already dead.')
+with open("out1.txt", "r+") as testFile:
+    for line in testFile.readlines():
+        engine.say(line)
 
 engine.runAndWait()
