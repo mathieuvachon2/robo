@@ -11,7 +11,7 @@ file2 = "out2"
 
 def func():
     # initialize the camera
-    cam = VideoCapture(0)   # 1 -> index of camera
+    cam = VideoCapture(1)   # 1 -> index of camera
     s, img = cam.read()
 
     if s:    # frame captured without any errors
@@ -26,13 +26,17 @@ def func():
     h = np.size(img, 0)
     w = np.size(img, 1)
 
-    x = input('Do you want to carry on? ("n" to exit): ')
+    x = raw_input('Do you want to carry on? ("n" to exit): ')
     if (x == "n"):
         exit()
 
     # Cropping the left and right halves of the picture
     image = Image.open(image1jpg)
     cnt = 0
+    os.system("tesseract " + image1jpg + " " + file1)
+
+    # No cropping for now
+    """ 
     while(True):
 
         if (cnt == 2) : break # Both pages have been cropped
@@ -40,8 +44,8 @@ def func():
         if (cnt == 0) : # Crop the left half
             image2 = image.crop((0, 0, w/2, h))
             image2.save(image2jpg)
-            # os.system("tesseract "+image2jpg+" "+file1)
-            subprocess.run(["tesseract", image2jpg, file1])
+            os.system("tesseract "+image2jpg+" "+file1)
+            #subprocess.run(["tesseract", image2jpg, file1])
             cnt += 1
 
         if (cnt == 1) : # Crop the right half
@@ -50,3 +54,4 @@ def func():
             # os.system("tesseract "+image2jpg+" "+file2)
             subprocess.run(["tesseract", image2jpg, file2])
             cnt += 1
+"""
