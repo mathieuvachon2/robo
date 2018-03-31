@@ -8,6 +8,8 @@ Text to speech part that reads from 'test.txt'
 '''
 
 # import pywin
+from time import sleep
+
 try:
     import pyttsx3 as pyttsx
 except ImportError:
@@ -22,7 +24,7 @@ import serial
 ######## If you're using Mac, uncomment the first line. If you're using Windows, uncomment the second line
 #and dont forget to type the correct post #######
 #ser = serial.Serial('/dev/cu.usbmodem1461',9600)
-#ser = serial.Serial('COM6', 9600)
+ser = serial.Serial('COM3', 9600)
 
 # Initialize the camera
 #redundant as itt initialize the camera already
@@ -50,13 +52,18 @@ while(True):
         engine.runAndWait()
 
     # Reading text file 2
-    with open(file2, "r+") as testFile:
-        for line in testFile.readlines():
-            engine.say(line)
-        engine.runAndWait()
+    #with open(file2, "r+") as testFile:
+     #   for line in testFile.readlines():
+      #      engine.say(line)
+       # engine.runAndWait()
 
     #send 1 to arduino to start the flipping process
+    engine.say("I will now flip the page")
+    engine.runAndWait()
     ser.write(b'1')
+    sleep(12)
     #executing the flipping in python
-    for line in ser.readlines():
-        print(line)
+    #for line in ser.readlines():
+     #   if (line == 'turn = 0\n'): break
+      #  print(line)
+
