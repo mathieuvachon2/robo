@@ -13,26 +13,25 @@ try:
 except ImportError:
     import pyttsx
 from pytesseract import image_to_string
-try:
-    import pillow
-except ImportError:
-    from PIL import Image
+from PIL import Image
 import os, sys, subprocess
 from cv2 import *
 import image_to_text as itt
 import serial
 
-ser = serial.Serial()
+# ser = serial.Serial()
 
 # Initialize the camera
 cam = VideoCapture(1)   # 1 -> index of camera
 s, img = cam.read()
+# print(img)
 
 itt.func()
 
 # Initialize TTS engine
 engine = pyttsx.init()
-SPEED = engine.getProperty('rate') * 0.5
+MODIF = 0.5
+SPEED = engine.getProperty('rate') * MODIF
 engine.setProperty('rate', SPEED)
 # print(engine.getProperty('voice'))
 
@@ -43,10 +42,10 @@ file2 = "out2.txt"
 with open(file1, "r+") as testFile:
     for line in testFile.readlines():
         engine.say(line)
-        engine.runAndWait()
+    engine.runAndWait()
 
 # Reading text file 2
 with open(file2, "r+") as testFile:
     for line in testFile.readlines():
         engine.say(line)
-        engine.runAndWait()
+    engine.runAndWait()
