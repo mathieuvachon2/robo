@@ -1,4 +1,4 @@
-from pytesseract import image_to_string
+#from pytesseract import image_to_string
 from PIL import Image
 import os, sys, subprocess
 import numpy as np
@@ -50,3 +50,4 @@ def func():
             # os.system("tesseract "+image2jpg+" "+file2)
             subprocess.run(["tesseract", image2jpg, file2])
             cnt += 1
+func()

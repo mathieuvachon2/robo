@@ -3,7 +3,7 @@
 
 #define MINQUARTDELAY 50
 #define MINHALFDELAY 200
-int turn = 1;
+int turn = 0;
 
 void turnDelay(Servo servo, int deg, int ms) {
   servo.write(deg);
@@ -40,6 +40,8 @@ Servo servo0;
 Servo servo1;
 int sensorvalue0;
 int sensorvalue1;
+int posArm;
+int posWheel;
 
 ////get output from python program: positive count if hit, negative or 0 if hold
 //// int count = get.countFromProgram;
@@ -50,8 +52,8 @@ int sensorvalue1;
 void setup()
 {
   pinMode(A0, INPUT);
-  pinMode(9, OUTPUT);
-  servo0.attach(9);
+  pinMode(2, OUTPUT);
+  servo0.attach(2);
 
   pinMode(A1, INPUT);
   pinMode(8, OUTPUT);
@@ -62,13 +64,18 @@ void setup()
       servo1.write(0); // servo on pin 9 connected to wheel returns to start position
       delay(15);
   }
+
+  Serial.begin(9600);
 }
 
 void loop() // note that loop never ends, do not use for this project
 {
-  while(turn == 0){
-    turn = Serial.read();
-  }
+  if (Serial.available() > 0) {
+//  while(turn == 0){
+//    turn = Serial.read();
+//    Serial.println(turn);
+//  }
+  int tmp = Serial.read();
   for (int i = 0; i < 4; i++) { // do this cycle 7? times to ensure paper gets discharged
     /*servo0.write(0); // adjust degrees for proper alignment with page
     delay(15);
@@ -116,5 +123,6 @@ void loop() // note that loop never ends, do not use for this project
     }
     // repeat 7? times
   }
-  turn = 0;
+//  turn = 0;
+  }
 }
