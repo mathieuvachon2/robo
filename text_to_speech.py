@@ -22,7 +22,7 @@ import serial
 # ser = serial.Serial()
 
 # Initialize the camera
-cam = VideoCapture(1)   # 1 -> index of camera
+cam = VideoCapture(0)   # 1 -> index of camera
 s, img = cam.read()
 # print(img)
 
@@ -30,7 +30,7 @@ itt.func()
 
 # Initialize TTS engine
 engine = pyttsx.init()
-MODIF = 0.5
+MODIF = 1.0
 SPEED = engine.getProperty('rate') * MODIF
 engine.setProperty('rate', SPEED)
 # print(engine.getProperty('voice'))

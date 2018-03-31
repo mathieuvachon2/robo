@@ -4,13 +4,14 @@ import os, sys, subprocess
 import numpy as np
 from cv2 import *
 
+image1jpg = "Image1.jpg"
 image2jpg = "Image2.jpg"
 file1 = "out1"
 file2 = "out2"
 
 def func():
     # initialize the camera
-    cam = VideoCapture(1)   # 1 -> index of camera
+    cam = VideoCapture(0)   # 1 -> index of camera
     s, img = cam.read()
 
     if s:    # frame captured without any errors
@@ -18,10 +19,10 @@ def func():
         imshow("cam-test",img)
         waitKey(0)
         destroyWindow("cam-test")
-        imwrite("Image.jpg",img) #save image
+        imwrite(image1jpg,img) #save image
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
-    img = cv2.imread('Image.jpg')
+    img = cv2.imread(image1jpg)
     h = np.size(img, 0)
     w = np.size(img, 1)
 
@@ -30,7 +31,7 @@ def func():
         exit()
 
     # Cropping the left and right halves of the picture
-    image = Image.open("Image.jpg")
+    image = Image.open(image1jpg)
     cnt = 0
     while(True):
 
