@@ -25,10 +25,10 @@ import serial
 ser = serial.Serial()
 
 # Initialize the camera
-cam = VideoCapture(1)   # 1 -> index of camera
-s, img = cam.read()
+#cam = VideoCapture(1)   # 1 -> index of camera
+#s, img = cam.read()
 
-itt.func()
+#itt.func()
 
 # Initialize TTS engine
 engine = pyttsx.init()
